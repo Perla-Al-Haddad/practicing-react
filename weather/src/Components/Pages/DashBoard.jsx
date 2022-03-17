@@ -174,7 +174,7 @@ function DashboardContent() {
                                             <StatisticsContainer title="Stat Title" value="541,687$" year="2020" />
                                             <StatisticsContainer title="Stat Title" value="18,127$" year="2020" />
                                             <StatisticsContainer title="Stat Title" value="21" year="2020" />
-                                            <StatisticsContainer title="Stat Title" value="NAN" year="2020" />
+                                            <StatisticsContainer title="Stat Title" value="NA" year="2020" />
                                         </Grid>
                                     </ChartBox>
                                 </Section>
