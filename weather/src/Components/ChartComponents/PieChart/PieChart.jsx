@@ -23,6 +23,7 @@ const getOption = (formattedData) => {
             orient: 'vertical',
             right: 10,
             top: 50,
+            align: 'right',
             data: formattedData.countries
         },
         series: [
