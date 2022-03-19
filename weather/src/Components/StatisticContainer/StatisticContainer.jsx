@@ -4,7 +4,7 @@ import React from "react";
 const StatisticContainer = props => {
 
     return (
-        <Grid item xs={6} md={6} lg={3}>
+        <Grid item xs={6} md={6} lg={6} className={props.className}>
             <h5 style={{ margin: 0 }}>
                 {props.title}
             </h5>

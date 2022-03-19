@@ -26,6 +26,7 @@ import ChartBox from '../ChartBox/ChartBox';
 import StatisticsContainer from '../StatisticContainer/StatisticContainer'
 import Section from '../Section/Section';
 import ScrollToButton from '../ScrollToButton/ScrollToButton';
+import MapChart from '../ChartComponents/MapChart/MapChart';
 
 library.add(faBarChart, faAreaChart, faPieChart, faProjectDiagram, faCircle);
 
@@ -94,7 +95,7 @@ function getCoords(elem) {
     return { top: Math.round(top), left: Math.round(left) };
 }
 
-const handleNavigation = function(e) {
+const handleNavigation = function (e) {
     let navigationCoords = getCoords(document.getElementById("appbar__navigation"));
     let headerDOM = document.getElementsByClassName("img-header");
     if (headerDOM[0].offsetHeight < navigationCoords.top) {
@@ -160,21 +161,33 @@ function DashboardContent() {
                 >
                     <Container maxWidth="xl" sx={{ pt: 4, pb: 5 }}>
                         <Grid container spacing={3}>
-                            <Grid item lg={12}>
-                                <ChartBox headerName="Lorem Ipsum" noIcons={true}>
-                                    <Typography>
-                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                                    </Typography>
-                                </ChartBox>
-                            </Grid>
-                            <Grid item xs={12} md={12} lg={12} >
-                                <Section id={"CoreStatisticsDIV"}>
-                                    <ChartBox headerName="Core Statistics">
-                                        <Grid container sx={{ p: 3, ml: 0 }} spacing={5}>
-                                            <StatisticsContainer title="Stat Title" value="541,687$" year="2020" />
-                                            <StatisticsContainer title="Stat Title" value="18,127$" year="2020" />
-                                            <StatisticsContainer title="Stat Title" value="21" year="2020" />
-                                            <StatisticsContainer title="Stat Title" value="NA" year="2020" />
+                            <Grid item xs={12}>
+                                <Section id={'Chart3DIV'}>
+                                    <ChartBox headerName="Global Map">
+                                        <Grid container>
+                                            <Grid item lg={4} xl={4}>
+                                                <Typography>
+                                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                                                </Typography>
+                                                <Typography>
+                                                    It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                                                </Typography>
+                                                <Typography
+                                                    variant={'h3'}>
+                                                    Core Statistics
+                                                </Typography>
+                                                <div style={{width: "100%"}}>
+                                                    <Grid container sx={{margin: "auto"}} spacing={5}>
+                                                        <StatisticsContainer title="Stat Title" value="541,687$" year="2020" className={"pt-1"}/>
+                                                        <StatisticsContainer title="Stat Title" value="18,127$" year="2020" className={"pt-1"}/>
+                                                        <StatisticsContainer title="Stat Title" value="21" year="2020" />
+                                                        <StatisticsContainer title="Stat Title" value="NA" year="2020" />
+                                                    </Grid>
+                                                </div>
+                                            </Grid>
+                                            <Grid item lg={8} xl={8}>
+                                                <MapChart height={680} />
+                                            </Grid>
                                         </Grid>
                                     </ChartBox>
                                 </Section>

@@ -1,58 +1,59 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import * as echarts from 'echarts'
 import ReactECharts from 'echarts-for-react';
 import theme from '../../../assets/resources/echartsTheme';
 
-const option = {
-    tooltip: {
-        backgroundColor: '#FFF',
-        borderColor: '#777',
-        borderWidth: 1,
-    },
-    dataset: {
-        source: [
-            ['Number of Jobs', 'Countries'],
-            [58212, 'Algeria'],
-            [78254, 'Bahrain'],
-            [41032, 'Egypt'],
-            [82755, 'Iraq'],
-            [20145, 'Jordan'],
-            [79146, 'Kuwait'],
-            [91852, 'Lebanon'],
-            [50000, 'Libya'],
-            [150621, 'Morocco'],
-            [164852, 'Mauritania'],
-            [123852, 'Oman'],
-            [20112, 'Palestine'],
-            [254821, 'Qatar'],
-            [246852, 'Saudi Arabia'],
-            [123457, 'Somalia'],
-            [56812, 'Sudan'],
-            [54756, 'Syrian'],
-            [21345, 'Tunisia'],
-            [284562, 'UAE'],
-            [213546, 'Yemen'],
-        ]
-    },
-    grid: { containLabel: true, width: '70%' },
-    xAxis: { type: 'category', name: 'product' },
-    yAxis: { name: 'amount' },
-    series: [
-        {
-            type: 'bar',
-            encode: {
-                x: 'Countries',
-                y: 'Number of Jobs'
-            },
-            inactiveOpacity: 0.05,
-            activeOpacity: 0.05,
-            progressive: 500,
-            smooth: true,
+const formatData = (APIResponse) => {
+    let data = ["Years", "Total_CO2_Emissions"]
+    for (let i = 0; i < APIResponse.length; i++) {
+        data.push([APIResponse[i].Year, APIResponse[i].Total_CO2_Emissions])        
+    }
+    return data;
+}
+
+const getOption = (formattedData) => {
+    return ({
+        tooltip: {
+            backgroundColor: '#FFF',
+            borderColor: '#777',
+            borderWidth: 1,
         },
-    ]
+        dataset: {
+            source: formattedData
+        },
+        grid: { containLabel: true, width: '70%' },
+        xAxis: { type: 'category', name: 'Year' },
+        yAxis: { name: 'Total CO2 Emissions' },
+        series: [
+            {
+                type: 'bar',
+                encode: {
+                    x: 'Years',
+                    y: 'Total CO2 Emissions'
+                },
+                inactiveOpacity: 0.05,
+                activeOpacity: 0.05,
+                progressive: 500,
+                smooth: true,
+            },
+        ]
+    })
 };
 
 const BarChart = props => {
+    const [option, setOption] = useState({});
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await fetch('https://climate-flask-api.herokuapp.com/GetCountryCO2Emissions/Total/LBN');
+            const responseData = await response.json();
+            var formattedData = formatData(responseData['data']);
+            console.log(formattedData)
+            setOption(getOption(formattedData));
+        };
+        fetchData();
+    }, []);
+
     return (
         <ReactECharts className="chart" theme={'walden'} option={option} style={{ height: props.height }} />
     )

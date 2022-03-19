@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import ReactECharts from 'echarts-for-react';
 
 const formatData = (APIResponse) => {
-    let data = { "countries": [], "GDP": [] }
-    let countries = new Set();
+    let data = { "Years": [], "Total_CO2_Emissions": [] }
+    let years = new Set();
     for (let i = 0; i < APIResponse.length; i++) {
-        data.GDP.push({ value: APIResponse[i].gdp_billion, name: APIResponse[i].Name })
-        countries.add(APIResponse[i].Name);
+        data.Total_CO2_Emissions.push({ value: APIResponse[i].Total_CO2_Emissions, name: APIResponse[i].Year })
+        years.add(APIResponse[i].Year);
     }
-    data.countries = [...countries];
+    data.years = [...years];
     return data;
 }
 
@@ -24,7 +24,7 @@ const getOption = (formattedData) => {
             right: 10,
             top: 50,
             align: 'right',
-            data: formattedData.countries
+            data: formattedData.years
         },
         series: [
             {
@@ -37,7 +37,7 @@ const getOption = (formattedData) => {
                     borderColor: '#fff',
                     borderWidth: 2
                 },
-                data: formattedData.GDP,
+                data: formattedData.Total_CO2_Emissions,
                 emphasis: {
                     radius: '40%',
                 }
@@ -51,9 +51,9 @@ const PieChart = props => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await fetch('https://visor.unescwa.org/dbs/COVID19/CountryProfile');
+            const response = await fetch('https://climate-flask-api.herokuapp.com/GetCountryCO2Emissions/Total/LBN');
             const responseData = await response.json();
-            var formattedData = formatData(responseData['response']);
+            var formattedData = formatData(responseData['data']);
             console.log(formattedData)
             setOption(getOption(formattedData));
         };
