@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Grid } from "@mui/material";
 import React from "react";
 
@@ -11,8 +12,9 @@ const StatisticContainer = props => {
             <h1 style={{ fontWeight: 700, margin: 0 }}>
                 {props.value}
             </h1>
-            <h6 style={{ margin: 0, color: '#8898AA' }}>
-                {props.year}
+            <h6 style={{ margin: 0, color: '#8898AA'}}>
+                <span style={{ paddingRight: 15 }}>{props.year}</span>
+                <FontAwesomeIcon icon={props.icon} />
             </h6>
         </Grid>
     )

@@ -1,7 +1,6 @@
 import $ from 'jquery';
 
 import * as React from 'react';
-import { useState, useCallback, useEffect } from "react";
 
 import { MenuItem, Toolbar, Typography } from '@mui/material'; //importing material ui component
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
@@ -12,10 +11,10 @@ import MuiAppBar from '@mui/material/AppBar';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 
-import { library } from '@fortawesome/fontawesome-svg-core'
+import { library } from '@fortawesome/fontawesome-svg-core';
 import { faCircle } from '@fortawesome/free-regular-svg-icons';
-import { faBarChart, faAreaChart, faPieChart, faProjectDiagram } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBarChart, faAreaChart, faPieChart, faProjectDiagram, faAngleUp, faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import PieChart from '../ChartComponents/PieChart/PieChart';
 import BarChart from '../ChartComponents/BarChart/BarChart';
@@ -28,7 +27,7 @@ import Section from '../Section/Section';
 import ScrollToButton from '../ScrollToButton/ScrollToButton';
 import MapChart from '../ChartComponents/MapChart/MapChart';
 
-library.add(faBarChart, faAreaChart, faPieChart, faProjectDiagram, faCircle);
+library.add(faBarChart, faAreaChart, faPieChart, faProjectDiagram, faCircle, faAngleUp, faAngleDown);
 
 const drawerWidth = 240;
 const mdTheme = createTheme();
@@ -129,24 +128,32 @@ function DashboardContent() {
                                     </Typography>
                                 </MenuItem>
                                 <MenuItem >
-                                    <Typography className='text-white' textAlign="center" variant={'h6'}>
-                                        <ScrollToButton toId="CoreStatisticsDIV">Core Statistics <FontAwesomeIcon icon={["far", "fa-circle"]} /></ScrollToButton>
-                                    </Typography>
+                                    <ScrollToButton toId="CoreStatisticsDIV">
+                                        <Typography className='text-white' textAlign="center" variant={'h6'}>
+                                            Core Statistics <FontAwesomeIcon icon={["far", "fa-circle"]} />
+                                        </Typography>
+                                    </ScrollToButton>
                                 </MenuItem>
                                 <MenuItem >
-                                    <Typography className='text-white' textAlign="center" variant={'h6'}>
-                                        <ScrollToButton toId="Chart1DIV">Chart Container 1 <FontAwesomeIcon icon={["fas", "fa-chart-pie"]} /></ScrollToButton>
-                                    </Typography>
+                                    <ScrollToButton toId="Chart1DIV">
+                                        <Typography className='text-white' textAlign="center" variant={'h6'}>
+                                            Chart Container 1 <FontAwesomeIcon icon={["fas", "fa-chart-pie"]} />
+                                        </Typography>
+                                    </ScrollToButton>
                                 </MenuItem>
                                 <MenuItem >
-                                    <Typography className='text-white' textAlign="center" variant={'h6'}>
-                                        <ScrollToButton toId="Chart2DIV">Chart Container 2 <FontAwesomeIcon icon={["fas", "fa-chart-bar"]} /></ScrollToButton>
-                                    </Typography>
+                                    <ScrollToButton toId="Chart2DIV">
+                                        <Typography className='text-white' textAlign="center" variant={'h6'}>
+                                            Chart Container 2 <FontAwesomeIcon icon={["fas", "fa-chart-bar"]} />
+                                        </Typography>
+                                    </ScrollToButton>
                                 </MenuItem>
                                 <MenuItem >
-                                    <Typography className='text-white' textAlign="center" variant={'h6'}>
-                                        <ScrollToButton toId="Chart3DIV">Chart Container 3 <FontAwesomeIcon icon={["fas", "fa-project-diagram"]} /></ScrollToButton>
-                                    </Typography>
+                                    <ScrollToButton toId="Chart3DIV">
+                                        <Typography className='text-white' textAlign="center" variant={'h6'}>
+                                            Chart Container 3 <FontAwesomeIcon icon={["fas", "fa-project-diagram"]} />
+                                        </Typography>
+                                    </ScrollToButton>
                                 </MenuItem>
                             </Grid>
                         </Container>
@@ -178,9 +185,9 @@ function DashboardContent() {
                                                 </Typography>
                                                 <div style={{width: "100%"}}>
                                                     <Grid container sx={{margin: "auto"}} spacing={5}>
-                                                        <StatisticsContainer title="Stat Title" value="541,687$" year="2020" className={"pt-1"}/>
-                                                        <StatisticsContainer title="Stat Title" value="18,127$" year="2020" className={"pt-1"}/>
-                                                        <StatisticsContainer title="Stat Title" value="21" year="2020" />
+                                                        <StatisticsContainer title="Stat Title" value="541,687$" year="2020" className={"pt-1"}  icon="fas fa-angle-up"/>
+                                                        <StatisticsContainer title="Stat Title" value="18,127$" year="2020" className={"pt-1"}  icon="fas fa-angle-down"/>
+                                                        <StatisticsContainer title="Stat Title" value="21" year="2020"  icon="fas fa-angle-down" />
                                                         <StatisticsContainer title="Stat Title" value="NA" year="2020" />
                                                     </Grid>
                                                 </div>
