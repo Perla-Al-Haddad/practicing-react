@@ -43,7 +43,9 @@ const ChartBox = props => {
                     }
                 </Grid>
             </Grid>
-            {props.children}
+            <div style={{height: (props.height ? props.height : 'fit-content')}}>
+                {props.children}
+            </div>
         </Paper>
     );
 }

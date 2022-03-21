@@ -9,6 +9,7 @@ const formatData = (APIResponse) => {
         countries.add(APIResponse[i].Name);
     }
     data.countries = [...countries];
+    console.log(data)
     return data;
 }
 
